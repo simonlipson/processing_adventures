@@ -44,7 +44,7 @@ class UpperBlocks():
 class LowerBlocks():
     def __init__(self, upper_height):
         self.xa = 760
-        self.ya = upper_height + random(60,120)
+        self.ya = upper_height + random(150,220)
         self.xb = 780
         self.yb = 650
         
@@ -53,7 +53,7 @@ class LowerBlocks():
         self.xb = self.xb - 4
         if self.xb == 0:
             self.xa = 760
-            self.ya = upper_height + random(100,200)
+            self.ya = upper_height + random(150,220)
             self.xb = 780
             self.yb = 650
            
@@ -87,7 +87,15 @@ def draw():
         fill(255)
         text("YOU LOSE!!!\n\n To Play Again Press Any Key", 300, 300)
         if keyPressed:
-            bird.y = 325       
+            bird.y = 325    
+            upper_blocks.xa = 760
+            upper_blocks.ya = 0
+            upper_blocks.xb = 780
+            upper_blocks.yb = random(10,600)
+            lower_blocks.xa = 760
+            lower_blocks.ya = upper_blocks.yb + random(150,220)
+            lower_blocks.xb = 780
+            lower_blocks.yb = 650 
       
 
     
