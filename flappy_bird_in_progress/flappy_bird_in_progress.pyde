@@ -52,6 +52,13 @@ class UpperBlocks():
         fill(255)
         text("SCORE: {}".format(self.count),600, 30) 
         
+    def reset(self):
+        self.xa = 760
+        self.ya = 0
+        self.xb = 780
+        self.yb = random(10,550)
+        self.count = 0
+        
 class LowerBlocks():
     def __init__(self, upper_height):
         self.xa = 760
@@ -71,12 +78,18 @@ class LowerBlocks():
             self.yb = 650
             self.count += 1
            
-        
     def show(self):
         fill(51,255,51)
         stroke(0)
         rectMode(CORNERS)
         rect(self.xa,self.ya,self.xb,self.yb)
+        
+    def reset(self, upper_height):
+        self.count = 0
+        self.xa = 760
+        self.ya = upper_height + random(150,220)
+        self.xb = 780
+        self.yb = 650 
         
 
 bird = Bird()
@@ -121,16 +134,8 @@ def draw():
         text("YOU LOSE!!!\n\n To Play Again Press Any Key", 300, 200)
         if keyPressed:
             bird.y = 325    
-            upper_blocks.xa = 760
-            upper_blocks.ya = 0
-            upper_blocks.xb = 780
-            upper_blocks.yb = random(10,550)
-            upper_blocks.count = 0
-            lower_blocks.count = 0
-            lower_blocks.xa = 760
-            lower_blocks.ya = upper_blocks.yb + random(150,220)
-            lower_blocks.xb = 780
-            lower_blocks.yb = 650 
+            upper_blocks.reset()
+            lower_blocks.reset(upper_blocks.yb)
 
             
     if bird.x >= upper_blocks.xa and dist(bird.x, bird.y, upper_blocks.xa, upper_blocks.ya) < upper_blocks.yb + 30:
@@ -139,16 +144,8 @@ def draw():
         fill(255)
         text("YOU LOSE!!!\n\n To Play Again Press Any Key", 300, 300)
         bird.y = 325    
-        upper_blocks.xa = 760
-        upper_blocks.ya = 0
-        upper_blocks.xb = 780
-        upper_blocks.yb = random(10,550)
-        upper_blocks.count = 0
-        lower_blocks.count = 0
-        lower_blocks.xa = 760
-        lower_blocks.ya = upper_blocks.yb + random(150,220)
-        lower_blocks.xb = 780
-        lower_blocks.yb = 650 
+        upper_blocks.reset()
+        lower_blocks.reset(upper_blocks.yb) 
 
         
     if bird.x >= lower_blocks.xa and dist(bird.x, bird.y, lower_blocks.xa, lower_blocks.yb) < (height-lower_blocks.ya) + 30:
@@ -157,16 +154,8 @@ def draw():
         fill(255)
         text("YOU LOSE!!!\n\n To Play Again Press Any Key", 300, 300)
         bird.y = 325    
-        upper_blocks.xa = 760
-        upper_blocks.ya = 0
-        upper_blocks.xb = 780
-        upper_blocks.yb = random(10,550)
-        upper_blocks.count = 0
-        lower_blocks.count = 0
-        lower_blocks.xa = 760
-        lower_blocks.ya = upper_blocks.yb + random(150,220)
-        lower_blocks.xb = 780
-        lower_blocks.yb = 650
+        upper_blocks.reset()
+        lower_blocks.reset(upper_blocks.yb)
 
     
 
